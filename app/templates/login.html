@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+
+	<div class="col-md-4 py-5 mx-auto">
+		<form action="/login" method="post">
+			<h2 class="text-center">Log in</h2>
+			<div class="form-group">
+				<input type="text" class="form-control" name="username" id="username" placeholder="Username"
+					required="required">
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" name="password" id="password" placeholder="Password"
+					required="required">
+			</div>
+			<div class="form-group">
+				<button type="button" id="submit" class="btn btn-primary btn-block">Log in</button>
+			</div>
+		</form>
+		<div id="msg" class="alert alert-danger invisible" role="alert"></div>
+	</div>
+	<script>
+		$(function () {
+			$('#submit').click(() => {
+					$.ajax({
+							type: "POST",
+							url: "/login",
+							data: {
+								username: $('input[name="username"]').val(),
+								password: $('input[name="password"]').val(),
+							},
+							success: function (val) {
+								if (val.action == 1) {
+									window.location.href = "/users";
+								} else {
+									$('#msg').removeClass('invisible');
+									$('#msg').html(val.message);
+								}
+						},
+						error: function (d) {
+							console.log(d);
+						},
+					});
+			});
+		});
+	</script>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,9 @@
+Flask[async]==2.0.1
+Flask-SQLAlchemy==2.5.1
+SQLAlchemy==1.4.23
+Asyncpg==0.24.0
+asyncio==3.4.3
+psycopg2-binary
+flask-bcrypt
+requests
+aiohttp
