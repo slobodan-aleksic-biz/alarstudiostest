@@ -1,6 +1,6 @@
 # alarstudiostest
 
-## the first task 
+# I task
 
 1. Create dockerdile and docker-composer.yml for the flask project
     a. create an image according to requirements.txt
@@ -20,5 +20,6 @@
 
 ### You can log in with username: slobodan and password: secret
 
+# II task
 ### The path for the second task
 http://localhost:5000/async_get
