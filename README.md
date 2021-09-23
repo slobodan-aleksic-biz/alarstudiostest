@@ -1,7 +1,6 @@
 # alarstudiostest
 
-# the first task 
-## 
+## the first task 
 
 1. Create dockerdile and docker-composer.yml for the flask project
     a. create an image according to requirements.txt
@@ -13,13 +12,13 @@
 3. Create a DB with script create_db.py and feed the DB table users
 3. Make simple CRUD for the User model using JQuery Ajax as expresed by the task requirements
 
-# Steps to run the project
+## Steps to run the project
 1. docker-compose build
 2. docker-compose up
 3. docker-compose exec app bash
 4. python app/create_db.py
 
-## You can log in with username: slobodan and password: secret
+### You can log in with username: slobodan and password: secret
 
-# The path for the second task
+### The path for the second task
 http://localhost:5000/async_get
