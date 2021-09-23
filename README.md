@@ -22,6 +22,9 @@
 3. docker-compose exec app bash
 4. python app/create_db.py
 
+### You can access the project at
+http://localhost:5000/
+
 ### You can log in with username: slobodan and password: secret
 
 # II task
