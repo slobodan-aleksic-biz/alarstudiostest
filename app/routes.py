@@ -67,14 +67,21 @@ def users():
     return render_template('users.html', users=users)
 
 
+def defaultRequests():
+
+    name = request.form['name']
+    username = request.form['username']
+    password = request.form['password']
+    is_admin = True if request.form['is_admin'] == '1' else False
+
+    return [name, username, password, is_admin]
+
+
 @app.route('/users/store', methods=['POST'])
 def store_user():
     if request.method == 'POST':
 
-        name = request.form['name']
-        username = request.form['username']
-        password = request.form['password']
-        is_admin = True if request.form['is_admin'] == '1' else False
+        [name, username, password, is_admin] = defaultRequests()
 
         if name == '' or username == '' or password == '':
             return jsonify({'action': 0, 'message': 'Mandatory fields are required!'})
@@ -117,10 +124,7 @@ def modify_user(id):
     if user == None:
         return jsonify({'action': 0, 'message': 'The user is not found!'})
 
-    name = request.form['name']
-    username = request.form['username']
-    password = request.form['password']
-    is_admin = True if request.form['is_admin'] == '1' else False
+    [name, username, password, is_admin] = defaultRequests()
 
     if name == '' or username == '':
         return jsonify({'action': 0, 'message': 'Mandatory fields are required!'})
@@ -160,39 +164,32 @@ def delete_user(id):
     return redirect('/')
 
 
+
+''' Second task (async calls) '''
+def feedSources(n, m):
+    l = list()
+    d = dict()
+    for i in range(n, n+10):
+        l.append({"id": str(i), "name": "Test "+str(i)})
+    for i in range(m, m+10):
+        l.append({"id": str(i), "name": "Test "+str(i)})
+
+    return l
+
+
 @app.route('/source_a', methods=['GET'])
 def source_a():
+    l = feedSources(1, 31)
+    return jsonify(results=l, status=200)
 
-    l = list()
-    d = dict()
-    for i in range(1, 11):
-        l.append({"id": str(i), "name": "Test "+str(i)})
-    for i in range(31, 41):
-        l.append({"id": str(i), "name": "Test "+str(i)})
 
-    return jsonify(results = l, status = 200)
-   
 @app.route('/source_b', methods=['GET'])
 def source_b():
-    
-    l = list()
-    d = dict()
-    for i in range(11, 21):
-        l.append({"id": str(i), "name": "Test "+str(i)})
-    for i in range(41, 51):
-        l.append({"id": str(i), "name": "Test "+str(i)})
+    l = feedSources(11, 41)
+    return jsonify(results=l, status=200)
 
-    return jsonify(results = l, status = 200)
-   
+
 @app.route('/source_c', methods=['GET'])
 def source_c():
-    
-    l = list()
-    d = dict()
-    for i in range(21, 31):
-        l.append({"id": str(i), "name": "Test "+str(i)})
-    for i in range(51, 61):
-        l.append({"id": str(i), "name": "Test "+str(i)})
-
-    return jsonify(results = l, status = 200)
-   
+    l = feedSources(21, 51)
+    return jsonify(results=l, status=200)
