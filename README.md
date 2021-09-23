@@ -13,10 +13,12 @@
 3. Make simple CRUD for the User model using JQuery Ajax as expresed by the task requirements
 
 ## Steps to run the project
-Open a terminal
+
+### Open a terminal
 1. docker-compose build
 2. docker-compose up
-Open second terminal and type in:
+
+### Open second terminal and type in:
 3. docker-compose exec app bash
 4. python app/create_db.py
 
