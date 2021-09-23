@@ -9,11 +9,6 @@ import json
 from init import app
 
 
-# @app.route('/')
-# async def index():
-#     await asyncio.sleep(1)
-#     return 'Hello'
-
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36',
     'Content-Type': 'application/json'
@@ -26,6 +21,7 @@ urls = ['http://localhost:5000/source_a',
 # Helper Functions
 
 async def fetch_url(session, url):
+    #await asyncio.sleep(3)
     """Fetch the specified URL using the aiohttp session specified."""
     async with session.get(url, headers=HEADERS) as response:
         text = await response.text(encoding='utf-8')
@@ -37,7 +33,6 @@ async def fetch_url(session, url):
 @app.route('/async_get')
 async def async_get():
     """Asynchronously retrieve the list of URLs."""
-
     async with ClientSession() as session:
         tasks = []
         for url in urls:
